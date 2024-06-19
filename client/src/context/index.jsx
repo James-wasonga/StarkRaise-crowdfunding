@@ -222,3 +222,6 @@ export const useStateContext = () => useContext(StateContext);
 // };
 
 // export const useStateContext = () => useContext(StateContext);
+
+
+//this is the connection based on starknet

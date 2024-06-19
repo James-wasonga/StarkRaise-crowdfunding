@@ -42,3 +42,4 @@ root.render(
 //   </StarknetProvider>
 // );
 
+//this is the connection based on starknet

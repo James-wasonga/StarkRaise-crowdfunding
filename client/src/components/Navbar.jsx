@@ -218,3 +218,5 @@ export default Navbar
 // };
 
 // export default Navbar;
+
+//this is the test for the connection based on starknet
