@@ -73,7 +73,8 @@ By addressing the limitations of traditional crowdfunding platforms, StarkRaise 
 Interoperability and Integration: StarkRaise can integrate with other dApps on StarkNet, creating synergies and expanding the ecosystem’s functionality.
 ## Economic Impact
 
-### Revenue Streams: The fund distribution model and NFT marketplace can create additional revenue streams within the StarkNet ecosystem.
+##### Revenue Streams:
+ The fund distribution model and NFT marketplace can create additional revenue streams within the StarkNet ecosystem.
 Community Building:
 
 ### User Empowerment
