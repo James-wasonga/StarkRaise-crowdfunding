@@ -26,6 +26,8 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //prove to see whether the form submits the form data
+    console.log(form);
 
     checkIfImage(form.image, async (exists) => {
       if(exists) {
