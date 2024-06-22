@@ -14,6 +14,7 @@ import loader from './loader.svg';
 import thirdweb from './thirdweb.png';
 import starkraise from './starkraise.png';
 import stark from './stark.png';
+import twitter from './twitter.svg';
 
 export {
   tagType,
@@ -32,4 +33,5 @@ export {
   thirdweb,
   starkraise,
   stark,
+  twitter,
 };

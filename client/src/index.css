@@ -17,7 +17,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0.8);
 }
 
-/*styling the app theme(dark and light modes) */
+/*styling the app theme(dark and light modes) */ 
 :root {
   --bg-light: #ffffff;
   --bg-dark: #1c1c24;

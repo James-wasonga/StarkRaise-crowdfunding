@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { logo, sun } from '../assets';
+import { logo, sun, twitter } from '../assets';
 import { navlinks } from '../constants';
 
 
@@ -19,6 +19,11 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
 const Sidebar = ({ isDarkTheme, toggleTheme }) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
+
+  const goToTwitterProfile = () => {
+    // window.open('https://twitter.com/JamesWasonga8','_blank');
+    window.location.href = 'https://twitter.com/JamesWasonga8';
+  }
 
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
@@ -43,7 +48,11 @@ const Sidebar = ({ isDarkTheme, toggleTheme }) => {
           ))}
         </div>
 
-       <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={sun} handleClick={toggleTheme} />
+        <div flex flex-col justify-center items-center gap-3>
+          <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={twitter} handleClick={goToTwitterProfile}/>
+          <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={sun} handleClick={toggleTheme} />
+        </div>
+
       </div>
     </div>
   )
