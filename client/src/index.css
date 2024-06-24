@@ -45,3 +45,69 @@ body.light {
   background-color: var(--bg-light);
   color: var(--text-light);
 }
+
+
+
+/* styling the sidebar titles*/
+/* styles.css */
+.relative {
+  position: relative;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.left-full {
+  left: 100%;
+}
+
+.ml-1 {
+  margin-left: 0.25rem; /* Smaller margin */
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.bg-gray-800 {
+  background-color: #2d3748;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.transition-opacity {
+  transition: opacity 0.3s;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
