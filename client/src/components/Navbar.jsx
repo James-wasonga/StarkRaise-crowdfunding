@@ -6,6 +6,7 @@ import{CustomButton} from './';
 import {logo, menu, search, thirdweb, starkraise, stark} from '../assets';
 import { navlinks } from '../constants';
 import { useStateContext } from '../context';//this is the folder where all the connections to the Smart Contract is done
+import { useAppContext } from '../providers/AppProvider';
 
 
 const Navbar = () => {

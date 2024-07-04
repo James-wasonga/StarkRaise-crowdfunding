@@ -1,5 +1,6 @@
 // //this File contains all the connections between the frontend and the smart contract
 
+// import { useAppContext } from '../providers/AppProvider';
 
 import React, {useContext, createContext, Children} from "react";
 
@@ -12,8 +13,8 @@ const StateContext = createContext();
 //connection of the createCampign to the smart contract 
 
 export const StateContextProvider = ({children}) => {
-    const {contract} = useContract('') //Smartcontract address goes here
-    const{mutateAsync: createCampaingn} = useContractWrite(contract, 'createCampaign');// createCampaign is a func within the smart contract
+    const {contract} = useContract('0x72d68e62bb940a0209ebe3198652eb1453625b9d480d735f58c0cbbcb79508d') //Smartcontract address goes here
+    const{mutateAsync: createCampaingn} = useContractWrite(contract, 'create_campaign');// createCampaign is a func within the smart contract
 
     const address = useAddress();
     const connect = useMetamask();
@@ -43,7 +44,7 @@ export const StateContextProvider = ({children}) => {
     //fetching the pushed items from the blockchain here
 
     const getCampaigns = async () => {
-        const campaigns = await contract.call('getCampaigns');
+        const campaigns = await contract.call('get_campaigns');
 
         console.log(campaigns);
 
