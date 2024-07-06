@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = '0x72d68e62bb940a0209ebe3198652eb1453625b9d480d735f58c0cbbcb79508d';
+export const CONTRACT_ADDRESS = '0x6ed90c70cd97a77b929139675326d97f735d54c7bea01eeca8f5592522dc8ef';
 export const ABI = [
     {
         "type": "impl",
@@ -198,12 +198,7 @@ export const ABI = [
             {
                 "type": "function",
                 "name": "get_campaigns",
-                "inputs": [
-                    {
-                        "name": "page",
-                        "type": "core::integer::u256"
-                    }
-                ],
+                "inputs": [],
                 "outputs": [
                     {
                         "type": "core::array::Array::<crowdfunding::starkstructs::Campaign>"

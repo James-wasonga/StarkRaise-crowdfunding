@@ -6,11 +6,14 @@ import { useStateContext } from '../context';
 import { money } from '../assets';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
+import { useAppContext } from '../providers/AppProvider';
 
 const CreateCampaign = () => {
+  const {contract, address, provider} = useAppContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
+  // const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
     name: '',
     title: '',
@@ -23,6 +26,23 @@ const CreateCampaign = () => {
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: e.target.value })
   }
+
+  const makeInteraction = (e) => {
+    e.preventDefault();
+    const {name, title, description, target, deadline, image} = form;
+    const dateToTimestamp = dateString => new Date(dateString).getTime();
+    const timestamp = dateToTimestamp(deadline);
+    console.log(timestamp)
+    const myCall = contract.populate('create_campagin', ["1",title,description,target,timestamp,0,image,"0x038fbb7354a1390d7e86ee60061c5ba1d848a135eca5e369f3cd911198da0789"])
+    setIsLoading(true)
+    contract['create_campagin'](myCall.calldata).then((res) => {
+        console.info("Successful Response:", res)
+    }).catch((err) => {
+        console.error("Error: ", err)
+    }).finally(() => {
+        setIsLoading(false)
+    })
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,7 +127,8 @@ const CreateCampaign = () => {
 
           <div className="flex justify-center items-center mt-[40px]">
             <CustomButton 
-              btnType="submit"
+              // btnType="submit"
+              handleClick={makeInteraction}
               title="Submit new campaign"
               styles="bg-[#1dc071]"
             />

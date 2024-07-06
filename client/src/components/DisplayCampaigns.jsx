@@ -10,6 +10,8 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
     navigate(`/campaign-details/${campaign.title}`, {state: campaign })
   }
 
+    campaigns && console.log(campaigns);
+
 
 
   return (
@@ -28,8 +30,17 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
         
         {!isLoading && campaigns.length > 0 && campaigns.map(
           (campaign) => <FundCard
+          owner={campaign.owner}
+          title={campaign.title}
+          description={campaign.description}
+          target={campaign.target}
+        amountCollected={campaign.amount_collected}
+        image={campaign.image}
+
+
+
             key={campaign.id}
-            {...campaign}
+            // {...campaign}
             handleClick={() => handleNavigate(campaign)}
 
           />

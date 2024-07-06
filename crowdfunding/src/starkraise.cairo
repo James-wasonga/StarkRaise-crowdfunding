@@ -50,7 +50,7 @@ mod StarkRaise {
             image: felt252,
             token_address: TokenAddress
         ) {
-            let campaign_id = self.campaigns_count.read();
+            let mut campaign_id = self.campaigns_count.read() + 1;
             let campaign = Campaign {
                 id: campaign_id,
                 uuid,
@@ -65,7 +65,7 @@ mod StarkRaise {
                 token_address,
             };
             self.campaigns.write(campaign_id, campaign);
-            self.campaigns_count.write(campaign_id + 1);
+            self.campaigns_count.write(campaign_id);
         }
 
         fn get_campaign(self: @ContractState, campaign_id: CampaignID) -> Campaign {
@@ -120,24 +120,34 @@ mod StarkRaise {
         }
 
         fn withdraw_donations(ref self: ContractState, campaign_id: CampaignID) {}
-        fn get_campaigns(self: @ContractState, page: u256) -> Array<Campaign> {
-            assert(page > 0, 'Page Cant be less than 1');
-            let mut campaigns = ArrayTrait::<Campaign>::new();
-            let total_count = self.campaigns_count.read();
-            let pagesize = 25;
+        fn get_campaigns(self: @ContractState) -> Array<Campaign> {
+            // assert(page > 0, 'Page Cant be less than 1');
+            // let mut campaigns = ArrayTrait::<Campaign>::new();
+            // let total_count = self.campaigns_count.read();
+            // let pagesize = 25;
 
-            if total_count > 0 {
-                let start_index = (page - 1) * pagesize + 1;
-                let mut count = start_index;
+            // if total_count > 0 {
+            //     let start_index = (page - 1) * pagesize + 1;
+            //     let mut count = start_index;
 
-                loop {
-                    if count > total_count || count > start_index + pagesize - 1 {
-                        break;
-                    }
-                    campaigns.append(self.campaigns.read(count));
-                    count += 1;
-                }
-            }
+            //     loop {
+            //         if count > total_count || count > start_index + pagesize - 1 {
+            //             break;
+            //         }
+            //         campaigns.append(self.campaigns.read(count));
+            //         count += 1;
+            //     }
+            // }
+
+            let campaign_count = self.campaigns_count.read();
+            let mut counter = 1;
+            let mut campaigns: Array<Campaign> = ArrayTrait::new();
+
+            while (counter <= campaign_count) {
+                let campaign = self.campaigns.read(counter);
+                campaigns.append(campaign);
+                counter += 1;
+            };
 
             campaigns
         }
