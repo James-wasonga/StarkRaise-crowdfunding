@@ -5,12 +5,16 @@ This is a crowdfunding Application built on Starknet -->
 StarkRaise is a decentralized crowdfunding platform built on StarkNet, empowering creators and backers through blockchain technology. The platform aims to address the limitations of traditional crowdfunding by prioritizing transparency, fair compensation, and community governance.
 
 
+
+
+
+
 <p align="center">
   <strong>🖥️ DApp Project</strong><br>
   Modul: Blockchain and Smart Contracts<br/>
 </p>
 
-
+![](client\src\assets\starkraise.png)
 # Background
 Traditional crowdfunding platforms often lack transparency and fair compensation for both creators and backers. StarkRaise leverages blockchain to ensure secure and transparent funding processes, enhancing user trust and participation.
 
