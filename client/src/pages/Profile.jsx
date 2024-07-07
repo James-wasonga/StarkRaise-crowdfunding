@@ -24,7 +24,7 @@ useEffect(() =>{
 
   return (
     <DisplayCampaigns
-    title='All Compaigns'
+    title='All my Compaigns'
     isLoading = {isLoading}
     campaigns = {campaigns}
   />

@@ -28,23 +28,21 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
           </p>
         )}
         
-        {!isLoading && campaigns.length > 0 && campaigns.map(
-          (campaign) => <FundCard
+        {!isLoading && campaigns.length > 0 && campaigns.map((campaign) =>(
+           <FundCard
+          key={campaign.id}
           owner={campaign.owner}
           title={campaign.title}
           description={campaign.description}
           target={campaign.target}
-        amountCollected={campaign.amount_collected}
-        image={campaign.image}
+          amountCollected={campaign.amount_collected}
+          image={campaign.image}
 
-
-
-            key={campaign.id}
-            // {...campaign}
+             //{...campaign}
             handleClick={() => handleNavigate(campaign)}
 
           />
-        )}
+        ))}
 
       </div>
 
@@ -53,5 +51,5 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
   )
 }
 
-export default DisplayCampaigns
+export default DisplayCampaigns;
 
