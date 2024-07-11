@@ -1,5 +1,32 @@
-export const daysLeft = (deadline) => {
-    const difference = new Date(deadline).getTime() - Date.now();
+import { BigNumber } from "bignumber.js";
+import { shortString } from "starknet";
+
+
+export function bigintToShortStr(bigintstr) {
+    try {
+      if (!bigintstr) return "";
+      const bn = BigNumber(bigintstr);
+      const hex_sentence = `0x` + bn.toString(16);
+      return shortString.decodeShortString(hex_sentence);
+    } catch (error) {
+      return bigintstr;
+    }
+  }
+
+  export function bigintToLongAddress(bigintstr) {
+    try {
+      if (!bigintstr) return "";
+      const bn = BigNumber(bigintstr);
+      const hex_sentence = `0x` + bn.toString(16);
+      return hex_sentence;
+    } catch (error) {
+      return bigintstr;
+    }
+  }
+
+//ancient code
+  export const daysLeft = (deadline) => {
+    const difference = new Date(Number(deadline)).getTime() - Date.now();
     const remainingDays = difference / (1000 * 3600 * 24);
   
     return remainingDays.toFixed(0);
