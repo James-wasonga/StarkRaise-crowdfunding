@@ -2,8 +2,8 @@ import React from 'react';
 
 import {tagType, thirdweb, starkraise} from '../assets';
 import{ daysLeft } from '../utils';
-import { bigintToLongAddress } from '../AppUtils';
-import { bigintToShortStr } from '../AppUtils';
+import { bigintToLongAddress } from '../utils';
+import { bigintToShortStr } from '../utils';
 
 
 const FundCard = ({owner,title, description, target, deadline, amountCollected, image, handleClick }) => {
