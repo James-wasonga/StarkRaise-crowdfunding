@@ -44,12 +44,41 @@ const AppProvider = (props) => {
     }
   };
 
+  //To display user campaigns on profile page
+    const getUserCampaigns = async () => {
+    const allCampaigns = await contract.get_campaigns();
+    const filteredCampaigns = allCampaigns.filter((campaign) => campaign.owner === address);
+    return filteredCampaigns;
+  };
+
+  //
+  const donate = async (pId, amount) => {
+    const data = await contract.invoke("donate", { campaign_id: pId, amount: ethers.utils.parseEther(amount) });
+    return data;
+  };
+
+  const getDonations = async (pId) => {
+    const donations = await contract.call("get_donations", { campaign_id: pId });
+    const numberOfDonations = donations.length;
+
+    const parsedDonations = donations.map((donation, i) => ({
+      donor: donation.donor,
+      amount: ethers.utils.formatEther(donation.amount.low.toString()), // Use ethers here
+      date: donation.date
+    }));
+
+    return parsedDonations;
+  };
+
   const appValue = useMemo(
     () => ({
       address,
       contract,
       provider,
       handleWalletConnection: connectWallet,
+      getUserCampaigns,
+      donate,
+      getDonations,
     }),
     [address, contract, provider]
   );
