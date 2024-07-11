@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { bigintToLongAddress } from '../AppUtils';
+import { bigintToShortStr } from '../AppUtils';
 
 import FundCard from './FundCard';
 import { loader } from '../assets';
@@ -31,12 +33,12 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
         {!isLoading && campaigns.length > 0 && campaigns.map((campaign) =>(
            <FundCard
           key={campaign.id}
-          owner={campaign.owner}
-          title={campaign.title}
-          description={campaign.description}
-          target={campaign.target}
-          amountCollected={campaign.amount_collected}
-          image={campaign.image}
+          owner={bigintToLongAddress(campaign.owner).slice(0,10)+"..."+bigintToLongAddress(campaign.owner).slice(-6)}
+          title={bigintToShortStr(campaign.title)}
+          description={bigintToShortStr(campaign.description)}
+          target={campaign.target.toString()}
+          amountCollected={campaign.amount_collected.toString()}
+          image={bigintToShortStr(campaign.image)}
 
              //{...campaign}
             handleClick={() => handleNavigate(campaign)}

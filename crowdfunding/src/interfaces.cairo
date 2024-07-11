@@ -10,11 +10,11 @@ pub trait IStarkRaise<TContractState> {
         ref self: TContractState,
         uuid: u64,
         title: felt252,
-        description: felt252,
+        description: ByteArray,
         target: Amount,
         deadline: u64,
         amount_collected: Amount,
-        image: felt252,
+        image: ByteArray,
         token_address: TokenAddress
     );
     fn get_campaign(self: @TContractState, campaign_id: CampaignID) -> Campaign;

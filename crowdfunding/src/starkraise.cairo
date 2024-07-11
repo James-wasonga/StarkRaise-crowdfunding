@@ -10,6 +10,7 @@ mod StarkRaise {
     use crowdfunding::starkstructs::{Campaign, Donation};
     use crowdfunding::utils::{CampaignID, UserAddress, TokenAddress, DonationID, Amount};
     use crowdfunding::erc20::{IERC20Dispatcher};
+    
 
 
     #[storage]
@@ -43,11 +44,11 @@ mod StarkRaise {
             ref self: ContractState,
             uuid: u64,
             title: felt252,
-            description: felt252,
+            description: ByteArray,
             target: Amount,
             deadline: u64,
             amount_collected: Amount,
-            image: felt252,
+            image: ByteArray,
             token_address: TokenAddress
         ) {
             let mut campaign_id = self.campaigns_count.read() + 1;
@@ -76,6 +77,7 @@ mod StarkRaise {
             ref self: ContractState, campaign_id: CampaignID, amount: Amount
         ) { // Donation logic
             let mut campaign = self.get_campaign(campaign_id);
+            let mut _campaign = self.get_campaign(campaign_id);
             let caller = get_caller_address();
             let token: IERC20Dispatcher = IERC20Dispatcher {
                 contract_address: campaign.token_address
@@ -90,7 +92,10 @@ mod StarkRaise {
                 self.donations.write((campaign_id, campaign.donations_count), donation);
                 campaign.donations_count += 1;
                 campaign.amount_collected += amount;
-                self.campaigns.write(campaign_id, campaign);
+                _campaign.donations_count += 1;
+                _campaign.amount_collected += amount;
+
+                self.campaigns.write(campaign_id, _campaign);
             }
         }
 

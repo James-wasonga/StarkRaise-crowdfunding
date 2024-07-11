@@ -2,9 +2,12 @@ import React from 'react';
 
 import {tagType, thirdweb, starkraise} from '../assets';
 import{ daysLeft } from '../utils';
+import { bigintToLongAddress } from '../AppUtils';
+import { bigintToShortStr } from '../AppUtils';
 
 
-const FundCard = ({owner, title, description, target, deadline, amountCollected, image, handleClick }) => {
+const FundCard = ({owner,title, description, target, deadline, amountCollected, image, handleClick }) => {
+
     const remainingDays = daysLeft(deadline);
 
 
@@ -46,10 +49,6 @@ const FundCard = ({owner, title, description, target, deadline, amountCollected,
 
       </div>
     </div> 
-   
-    
-
-
     
   )
 }
