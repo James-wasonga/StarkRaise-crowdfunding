@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { bigintToLongAddress } from '../utils';
 import { bigintToShortStr } from '../utils';
 
+
 import FundCard from './FundCard';
 import { loader } from '../assets';
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
   const navigate  = useNavigate();
 
   const handleNavigate = (campaign) =>{
-    navigate(`/campaign-details/${campaign.title}`, {state: campaign })
+    navigate(`/campaign-details/${campaign.id.toString()}`, {state: campaign })
   }
 
     campaigns && console.log(campaigns);
@@ -41,8 +42,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
           image={campaign.image}
           deadline={campaign.deadline}
       
-
-
             // {...campaigns}
             handleClick={() => handleNavigate(campaign)}
 
