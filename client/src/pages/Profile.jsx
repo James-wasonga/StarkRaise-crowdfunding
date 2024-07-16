@@ -40,6 +40,7 @@ import React, { useState , useEffect} from 'react';
 import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context';
 import { useAppContext } from '../providers/AppProvider';
+import { bigintToLongAddress } from '../utils';
 
 
   const Profile = () => {
@@ -48,7 +49,7 @@ import { useAppContext } from '../providers/AppProvider';
   //Aiming at displaying the fetch data from the smart contract onto the homePage
 
 //const {address, contract, getCampaigns} = useStateContext();
-  const {contract, address, provider} = useAppContext();
+  const {contract, address, provider, getUserCampaigns} = useAppContext();
 
   const fetchCampaigns = async () => {
     setIsLoading(true);
@@ -57,15 +58,32 @@ import { useAppContext } from '../providers/AppProvider';
     // setIsLoading(false);
 
     try{
+      
       const campaignsData = await contract.get_campaigns();
-      setCampaigns(campaignsData);
-      console.log("Fetched Campaigns Successfully",campaignsData);
+      campaignsData.forEach((data) => {
+        console.log(bigintToLongAddress(data.owner));
+      })
+
+      console.log(bigintToLongAddress("1610891411886380420766473104775373822107081622285015934560508474018384971657"))
+
+      const filteredCampaignData = await campaignsData.filter((data) => bigintToLongAddress(data.owner) == address);
+      // console.log(address);
+      
+      console.log(filteredCampaignData);
+      setCampaigns(filteredCampaignData);
+    
+      // console.log("Fetched Campaigns Successfully",campaignsData);
+      // if(campaignsData.filter((campaign) => bigintToLongAddress campaign.owner === address)){
+      //   setCampaigns(campaignsData);
+      //   console.log(campaignsData);
+
+      // }
   
       // const userCampaigns = campaignsData.filter(campaign => campaign.owner === address);
       // setCampaigns(userCampaigns);
       // console.log("User Campaigns:", userCampaigns);
     } catch (error){
-      console.error("Error fetching campaign:", error);
+      console.error("Error fetching campaign:", error);     
 
     } finally{
       setIsLoading(false);
