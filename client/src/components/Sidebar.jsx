@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidetip from './Sidetip'; // Import Sidetip component
+import {logout} from "../assets"
 
 import { logo, sun, twitter } from '../assets';
 import { navlinks } from '../constants';
+import { useAppContext } from '../providers/AppProvider';
 
 const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick, title }) => (
   <Sidetip text={title}>
@@ -26,6 +28,7 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick, title }) 
 );
 
 const Sidebar = ({ isDarkTheme, toggleTheme }) => {
+  const {handleWalletDisconnection} = useAppContext();
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
 
@@ -55,6 +58,9 @@ const Sidebar = ({ isDarkTheme, toggleTheme }) => {
               title={link.name} // Set title based on link name
             />
           ))}
+          <Icon type="button" handleClick={() => {
+            handleWalletDisconnection()
+          }}  imgUrl={logout}/>
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3">
