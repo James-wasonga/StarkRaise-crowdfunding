@@ -33,7 +33,7 @@ const CreateCampaign = () => {
     const dateToTimestamp = dateString => new Date(dateString).getTime();
     const timestamp = dateToTimestamp(deadline);
     console.log(timestamp)
-    const myCall = contract.populate('create_campagin', ["1",title,description,target,timestamp,0,image,"0x038fbb7354a1390d7e86ee60061c5ba1d848a135eca5e369f3cd911198da0789"])
+    const myCall = contract.populate('create_campagin', ["1",title,description,target,timestamp,0,image,"0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"])
     setIsLoading(true)
     contract['create_campagin'](myCall.calldata).then((res) => {
         console.info("Successful Response:", res)
