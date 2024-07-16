@@ -1,13 +1,16 @@
 import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import { connect, disconnect } from "starknetkit";
+import { ethers } from "ethers";
+import { bigintToLongAddress } from "../utils";
 
-import { Contract, Provider, Account, ec, json, constants } from "starknet";
+import { Contract, Provider, Account, ec, json, constants, cairo, CallData } from "starknet";
 import { ABI, CONTRACT_ADDRESS } from "./abi";
 const initialData = {
   address: null,
   contract: null,
   provider: null,
   handleWalletConnection: null,
+  handleWalletDisconnection: null,
 };
 
 const AppContext = createContext(initialData);
@@ -28,6 +31,15 @@ const AppProvider = (props) => {
     }
   };
 
+  const disconnectWallet = async () => {
+    const { wallet } = await disconnect();
+    if (wallet && wallet.isConnected) {
+      // setConnection(undefined);
+      setProvider(undefined);
+      setAddress("");
+    }
+  };
+
   const connectContract = () => {
     if (address && provider) {
       const _contract = new Contract(ABI, CONTRACT_ADDRESS, provider);
@@ -43,6 +55,7 @@ const AppProvider = (props) => {
       // console.log(_contract);
     }
   };
+//they all start here
 
   //To display user campaigns on profile page
     const getUserCampaigns = async () => {
@@ -51,31 +64,67 @@ const AppProvider = (props) => {
     return filteredCampaigns;
   };
 
-  //
-  const donate = async (pId, amount) => {
-    const data = await contract.invoke("donate", { campaign_id: pId, amount: ethers.utils.parseEther(amount) });
-    return data;
-  };
+  //donate
+  // const donate = async (pId, amount) => {
+  //   const data = await contract.invoke("donate", { campaign_id: pId, amount: ethers.utils.parseEther(amount) });
+  //   return data;
+  // };
 
-  const getDonations = async (pId) => {
-    const donations = await contract.call("get_donations", { campaign_id: pId });
-    const numberOfDonations = donations.length;
+  // const getDonations = async (pId) => {
+  //   const donations = await contract.call("get_donations", { campaign_id: pId });
+  //   const numberOfDonations = donations.length;
 
-    const parsedDonations = donations.map((donation, i) => ({
-      donor: donation.donor,
-      amount: ethers.utils.formatEther(donation.amount.low.toString()), // Use ethers here
-      date: donation.date
-    }));
+  //   const parsedDonations = donations.map((donation, i) => ({
+  //     donor: donation.donor,
+  //     amount: ethers.utils.formatEther(donation.amount.low.toString()), // Use ethers here
+  //     date: donation.date
+  //   }));
 
+  //   return parsedDonations;
+  // };
+
+
+  const donate = async (id, amount) => {
+
+    const donate_funds = contract.populate("donate", [id, 1000000000000000n]);
+    const results = await provider.execute([{
+      contractAddress: "0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+      entrypoint: "approve",
+      calldata: CallData.compile({
+        spender: CONTRACT_ADDRESS,
+        amount: cairo.uint256(1000000000000000n)
+      })
+    },
+    {
+      contractAddress: CONTRACT_ADDRESS,
+      entrypoint: "donate",
+      calldata: donate_funds.calldata,
+    }
+  ])
+}
+
+const getDonations = async(id) => {
+    const donations =await contract.call('get_donations',id);
+    const numberOfDonations = donations[0].length;
+
+    const parsedDonations = [];
+
+    for(let i = 0; i < numberOfDonations; i++){
+        parsedDonations.push({
+        donator: donations[0][i],
+        donation: ethers.utils.formatEther(donations[1][i].toString())
+    })
+    }
     return parsedDonations;
-  };
-
+}
+// they all end here
   const appValue = useMemo(
     () => ({
       address,
       contract,
       provider,
       handleWalletConnection: connectWallet,
+      handleWalletDisconnection: disconnectWallet,
       getUserCampaigns,
       donate,
       getDonations,
@@ -85,6 +134,10 @@ const AppProvider = (props) => {
   useEffect(() => {
     connectContract();
   }, [address]);
+
+  useEffect(() => {
+    connectWallet();
+  }, [])
   return (
     <AppContext.Provider value={appValue}>{props.children}</AppContext.Provider>
   );
