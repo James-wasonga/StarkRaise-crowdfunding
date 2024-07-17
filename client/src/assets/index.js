@@ -15,6 +15,8 @@ import thirdweb from './thirdweb.png';
 import starkraise from './starkraise.png';
 import stark from './stark.png';
 import twitter from './twitter.svg';
+import beststark from './beststark.png';
+
 
 export {
   tagType,
@@ -34,4 +36,5 @@ export {
   starkraise,
   stark,
   twitter,
+  beststark,
 };
