@@ -73,7 +73,7 @@ return (
             </div>
             <div>
               <h4 className="font-epilogue font-semibold text-[14px] text-white break-all">{bigintToLongAddress(state.owner)}</h4>
-              <p className="mt-[4px] font-epilogue font-normal text-[12px] text-blue-500">10 Campaigns</p>
+              <p className="mt-[4px] font-epilogue font-normal text-[12px] text-blue-500"> Campaigns</p>
             </div>
           </div>
         </div>
