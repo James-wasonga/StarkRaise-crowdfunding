@@ -124,7 +124,27 @@ mod StarkRaise {
             donations
         }
 
-        fn withdraw_donations(ref self: ContractState, campaign_id: CampaignID) {}
+        //Donation Withdrawal
+        fn withdraw_donations(ref self: ContractState, campaign_id: CampaignID) {
+            let mut campaign = self.campaigns.read(campaign_id);
+            let mut _campaign = self.campaigns.read(campaign_id);
+            let campaign_amount = campaign.amount_collected;
+            let caller = get_caller_address();
+
+            assert(caller == campaign.owner, 'Not the owner');
+            assert(campaign.amount_collected >= campaign.target, 'Target not reached');
+            assert(get_block_timestamp() > campaign.deadline, 'Campaign ended');
+
+            campaign.amount_collected = 0;
+            self.campaigns.write(campaign_id, _campaign);
+
+            IERC20Dispatcher { contract_address: campaign.token_address}
+                .transfer(campaign.owner, campaign_amount);
+
+
+        }
+
+
         fn get_campaigns(self: @ContractState) -> Array<Campaign> {
             // assert(page > 0, 'Page Cant be less than 1');
             // let mut campaigns = ArrayTrait::<Campaign>::new();
