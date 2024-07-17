@@ -76,7 +76,7 @@ const AppProvider = (props) => {
 
   //   const parsedDonations = donations.map((donation, i) => ({
   //     donor: donation.donor,
-  //     amount: ethers.utils.formatEther(donation.amount.low.toString()), // Use ethers here
+  //     amount: ethers.utils.formatEther(donation.amount.low.toString()), // Use ethers here 
   //     date: donation.date
   //   }));
 
@@ -86,13 +86,14 @@ const AppProvider = (props) => {
 
   const donate = async (id, amount) => {
 
-    const donate_funds = contract.populate("donate", [id, 1000000000000000n]);
+    const weiAmount = ethers.utils.parseUnits(amount.toString(), 'wei');
+    const donate_funds = contract.populate("donate", [id, weiAmount]);
     const results = await provider.execute([{
       contractAddress: "0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
       entrypoint: "approve",
       calldata: CallData.compile({
         spender: CONTRACT_ADDRESS,
-        amount: cairo.uint256(1000000000000000n)
+        amount: cairo.uint256(weiAmount)
       })
     },
     {
@@ -117,6 +118,7 @@ const getDonations = async(id) => {
     }
     return parsedDonations;
 }
+
 // they all end here
   const appValue = useMemo(
     () => ({
