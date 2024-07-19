@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from './';
 import { logo, menu, search, stark } from '../assets';
 import { navlinks } from '../constants';
- import { useAppContext } from '../providers/AppProvider';
+ import { useAppContext } from '../providers/AppProvider';  
 import { providers } from 'ethers';
 
 const Navbar = () => {
