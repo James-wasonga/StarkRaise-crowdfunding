@@ -62,7 +62,7 @@ const Sidebar = ({ isDarkTheme, toggleTheme }) => {
           <Icon
            type="button" handleClick={() => {
             handleWalletDisconnection()
-          }}  imgUrl={logout} />
+          }}  imgUrl={logout} title="Logout"/>
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3">
