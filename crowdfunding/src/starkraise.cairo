@@ -100,26 +100,33 @@ mod StarkRaise {
         }
 
         fn get_donations(
-            self: @ContractState, campaign_id: CampaignID, page: u256
-        ) -> Array<Donation> {
-            assert(page > 0, 'Page Cant be less than 1');
+            self: @ContractState, campaign_id: CampaignID
+        , page: u256) -> Array<Donation> {
+            // assert(page > 0, 'Page Cant be less than 1');
             let mut donations = ArrayTrait::<Donation>::new();
             let campaign = self.get_campaign(campaign_id);
             let total_count = campaign.donations_count;
-            let pagesize = 25;
+            let mut counter = 1;
 
-            if total_count > 0 {
-                let start_index = (page - 1) * pagesize + 1;
-                let mut count = start_index;
+            while (counter <= total_count) {
+                let donation = self.donations.read((campaign_id, counter));
+                donations.append(donation);
+                counter += 1;
+            };
+            // let pagesize = 25;
 
-                loop {
-                    if count > total_count || count > start_index + pagesize - 1 {
-                        break;
-                    }
-                    donations.append(self.donations.read((campaign_id, count)));
-                    count += 1;
-                }
-            }
+            // if total_count > 0 {
+            //     let start_index = (page - 1) * pagesize + 1;
+            //     let mut count = start_index;
+
+            //     loop {
+            //         if count > total_count || count > start_index + pagesize - 1 {
+            //             break;
+            //         }
+            //         donations.append(self.donations.read((campaign_id, count)));
+            //         count += 1;
+            //     }
+            // }
 
             donations
         }
@@ -132,7 +139,7 @@ mod StarkRaise {
             let caller = get_caller_address();
 
             assert(caller == campaign.owner, 'Not the owner');
-            assert(campaign.amount_collected >= campaign.target, 'Target not reached');
+            assert(campaign.amount_collected >= campaign.target / 2, 'Target not reached');
             assert(get_block_timestamp() > campaign.deadline, 'Campaign ended');
 
             campaign.amount_collected = 0;
