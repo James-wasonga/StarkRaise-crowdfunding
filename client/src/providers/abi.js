@@ -1,5 +1,5 @@
 
-export const CONTRACT_ADDRESS = '0x03013c13f269899c5e79ea1a4ee7f1c7036f17baed906c6922f83e7d87203ff1';
+export const CONTRACT_ADDRESS = '0xd4604c9d18d9ff575184af8e61e0418a5d66bec3ba86f6587e29bc280fdd6c';
 
 export const ABI = [
     {
@@ -235,6 +235,7 @@ export const ABI = [
         "variants": []
     }
 ]
+   
 
 // export const CONTRACT_ADDRESS = '0x6ed90c70cd97a77b929139675326d97f735d54c7bea01eeca8f5592522dc8ef';
 
