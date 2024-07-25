@@ -106,9 +106,9 @@ mod StarkRaise {
             let mut donations = ArrayTrait::<Donation>::new();
             let campaign = self.get_campaign(campaign_id);
             let total_count = campaign.donations_count;
-            let mut counter = 1;
+            let mut counter = 0;
 
-            while (counter <= total_count) {
+            while (counter < total_count) {
                 let donation = self.donations.read((campaign_id, counter));
                 donations.append(donation);
                 counter += 1;
