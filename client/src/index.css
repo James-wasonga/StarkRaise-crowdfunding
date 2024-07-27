@@ -111,3 +111,59 @@ body.light {
 .whitespace-nowrap {
   white-space: nowrap;
 }
+
+/* Welcome page styling */
+.title {
+  margin-top:70px ;
+  color: white;
+  font-size: 2.8rem; /* Adjust as needed */
+  font-weight: bold; /* Adjust as needed */
+  margin-bottom: 1rem; /* Add some space below the heading */
+}
+
+.subtitle {
+  display: block;
+  font-size:2.8rem; /* Adjust as needed */
+  font-weight: normal; /* Adjust as needed */
+  font-weight: bold;
+ 
+  margin-top: 0.5rem; /* Add some space above the subtitle */
+}
+
+.par{
+  color: white;
+  padding-top: 30px;
+  position: relative; 
+  padding-left: 25px;
+}
+
+
+.par::before {
+  content: ''; /* Required for the pseudo-element to display */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px; /* Adjust the width as needed */
+  height: 3em; /* Adjust the height as needed */
+  background-color: green; /* Adjust the color as needed */
+}
+.Explore-btn{
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: green;
+  border-radius: 75px;
+  height: 20px;
+  width: 160px;
+  margin-left: 30px;
+ margin-top: 30px;
+
+}
+.img{
+  height: auto;
+  width: 400px;
+  margin-top: -360px;
+  margin-left: 700px;
+}
+
