@@ -16,6 +16,7 @@ import starkraise from './starkraise.png';
 import stark from './stark.png';
 import twitter from './twitter.svg';
 import beststark from './beststark.png';
+import crowd from './crowd.png';
 
 
 export {
@@ -37,4 +38,5 @@ export {
   stark,
   twitter,
   beststark,
+  crowd,
 };
