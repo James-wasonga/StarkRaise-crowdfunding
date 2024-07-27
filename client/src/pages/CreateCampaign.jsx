@@ -7,12 +7,14 @@ import { money } from '../assets';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
 import { useAppContext } from '../providers/AppProvider';
+import { uploadToIPFS } from '../Infura';
 
 const CreateCampaign = () => {
   const {contract, address, provider} = useAppContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
+  const [uploadedFile, setUploadedFile] = useState(null);
   // const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
     name: '',
@@ -33,7 +35,7 @@ const CreateCampaign = () => {
     const dateToTimestamp = dateString => new Date(dateString).getTime();
     const timestamp = dateToTimestamp(deadline);
     console.log(timestamp)
-    const myCall = contract.populate('create_campagin', ["1",title,description,target,timestamp,0,image,"0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"])
+    const myCall = contract.populate('create_campagin', ["1",title,description,target,timestamp,0,uploadedFile,"0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"])
     setIsLoading(true)
     contract['create_campagin'](myCall.calldata).then((res) => {
         console.info("Successful Response:", res)
@@ -42,6 +44,16 @@ const CreateCampaign = () => {
     }).finally(() => {
         setIsLoading(false)
     })
+}
+
+const handleFileChange = async (e) => {
+  // console.log(e)
+  var file = e.target.files[0];
+  const response = await uploadToIPFS(file);
+  console.log(response);
+  setUploadedFile(response);
+
+
 }
 
   const handleSubmit = async (e) => {
@@ -118,11 +130,12 @@ const CreateCampaign = () => {
         </div>
 
         <FormField 
+
             labelName="Campaign image *"
             placeholder="Place image URL of your campaign"
-            inputType="url"
+            inputType="file"
             value={form.image}
-            handleChange={(e) => handleFormFieldChange('image', e)}
+            handleChange={handleFileChange}
           />
 
           <div className="flex justify-center items-center mt-[40px]">
