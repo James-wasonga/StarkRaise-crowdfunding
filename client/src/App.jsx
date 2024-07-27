@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Route,Routes} from 'react-router-dom';
 
 import { Sidebar,Navbar } from './components';
-import { CampaignDetails, CreateCampaign,Home,Profile} from './pages';
+import { CampaignDetails, CreateCampaign,Home,Profile, WelcomePage} from './pages';
 import AppProvider from './providers/AppProvider';
 
 
@@ -32,6 +32,8 @@ const App = () => {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/create-campaign' element={<CreateCampaign/>} />
             <Route path='/campaign-details/:id' element={<CampaignDetails/>}/>
+            <Route path='/welcome' element={<WelcomePage/>}/>
+
 
           </Routes>
           
