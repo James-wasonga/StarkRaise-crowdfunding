@@ -86,8 +86,10 @@ const AppProvider = (props) => {
 
   const donate = async (id, amount) => {
 
-    const weiAmount = ethers.utils.parseUnits(amount.toString(), 'wei');
-    const donate_funds = contract.populate("donate", [id, weiAmount]);
+    const weiAmount = amount * 1000000000000000000;
+    // console.log(weiAmount)
+    
+    const donate_funds = contract.populate("donate", [id, BigInt(weiAmount)]);
     const results = await provider.execute([{
       contractAddress: "0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
       entrypoint: "approve",
@@ -106,17 +108,18 @@ const AppProvider = (props) => {
 
 const getDonations = async(id) => {
     const donations =await contract.call('get_donations',id);
-    const numberOfDonations = donations[0].length;
+    console.log(donations);
+    // const numberOfDonations = donations[0].length;
 
-    const parsedDonations = [];
+    // const parsedDonations = [];
 
-    for(let i = 0; i < numberOfDonations; i++){
-        parsedDonations.push({
-        donator: donations[0][i],
-        donation: ethers.utils.formatEther(donations[1][i].toString())
-    })
-    }
-    return parsedDonations;
+    // for(let i = 0; i < numberOfDonations; i++){
+    //     parsedDonations.push({
+    //     donator: donations[0][i],
+    //     donation: ethers.utils.formatEther(donations[1][i].toString())
+    // })
+    // }
+    return donations;
 }
 
 // they all end here
