@@ -38,7 +38,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
           title={bigintToShortStr(campaign.title)}
           description={campaign.description}
           target={campaign.target.toString()}
-          amountCollected={campaign.amount_collected.toString()}
+          amountCollected={campaign.amount_collected.toString()/1000000000000000000}
           image={campaign.image}
           deadline={campaign.deadline}
       
