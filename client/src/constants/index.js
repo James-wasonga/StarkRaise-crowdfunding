@@ -29,6 +29,12 @@ export const navlinks = [
     imgUrl: profile,
     link: '/profile',
   },
+
+  // {
+  //   name: 'Welcome',
+  //   imgUrl: profile,
+  //   link: '/welcome',
+  // },
   // {
   //   name: 'logout',
   //   imgUrl: logout,
