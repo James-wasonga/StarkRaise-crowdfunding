@@ -100,7 +100,7 @@ return (
             <div className="mt-[20px] flex flex-col gap-4">
               {donators? donators.map((item, index) => (  
                 <div key={`${item.donor}-${index}`} className="flex justify-between items-center gap-4">
-                  <p className="font-epilogue font-normal text-[16px] text-[#b2b3bd] leading-[26px] break-ll">{index + 1}. {bigintToLongAddress(item.donor).slice(0,24)+"..."+bigintToLongAddress(item.donor).slice(-6)}</p>
+                  <p className="font-epilogue font-normal text-[16px] text-[#b2b3bd] leading-[26px] break-ll">{index + 1}. {bigintToLongAddress(item.donor)}</p>
                   <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] break-ll">{item.amount?.toString() / 1000000000000000000} Eth</p>
                 </div>
               )) : (
