@@ -9,7 +9,3 @@ export {default as FundCard} from './FundCard';
 export {default as CountBox} from './CountBox';
 export {default as Loader } from './Loader';
 
-
-
-
-
