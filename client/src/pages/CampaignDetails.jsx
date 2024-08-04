@@ -100,7 +100,7 @@ const CampaignDetails = () => {
 
           <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
             <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer">
-              <img src={stark} alt="user" className="w-[100%] h-[100%] object-contain"/>
+              <img src={stark} alt="user" className="w-[90%] h-[100%] object-contain"/>
             </div>
             <div>
               <h4 className="font-epilogue font-semibold text-[14px] text-white break-all">{bigintToLongAddress(state.owner)}</h4>
