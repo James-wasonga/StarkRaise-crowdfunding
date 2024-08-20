@@ -43,7 +43,9 @@ import { bigintToLongAddress } from '../utils';
 
       // }
   
-
+      // const userCampaigns = campaignsData.filter(campaign => campaign.owner === address);
+      // setCampaigns(userCampaigns);
+      // console.log("User Campaigns:", userCampaigns);
     } catch (error){
       console.error("Error fetching campaign:", error);     
 
