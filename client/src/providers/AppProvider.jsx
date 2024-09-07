@@ -109,16 +109,7 @@ const AppProvider = (props) => {
 const getDonations = async(id) => {
     const donations =await contract.call('get_donations',id);
     console.log(donations);
-    // const numberOfDonations = donations[0].length;
 
-    // const parsedDonations = [];
-
-    // for(let i = 0; i < numberOfDonations; i++){
-    //     parsedDonations.push({
-    //     donator: donations[0][i],
-    //     donation: ethers.utils.formatEther(donations[1][i].toString())
-    // })
-    // }
     return donations;
 }
 
