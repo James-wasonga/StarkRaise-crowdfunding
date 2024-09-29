@@ -6,10 +6,10 @@ StarkRaise is a decentralized crowdfunding platform built on StarkNet, empowerin
 
 ![beststark](https://github.com/user-attachments/assets/f34ae7bb-15dd-40c1-b396-f6bc5e8d8366)
 
-<p align="center">
+<!-- <p align="center">
   <strong>🖥️ DApp Project</strong><br>
   Modul: Blockchain and Smart Contracts<br/>
-</p>
+</p> -->
 
 ![](client\src\assets\starkraise.png)
 # Background
