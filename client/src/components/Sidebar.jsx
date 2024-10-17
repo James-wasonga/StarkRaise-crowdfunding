@@ -77,6 +77,3 @@ const Sidebar = ({ isDarkTheme, toggleTheme }) => {
 
 export default Sidebar;
 
-// const goToWelcomePage = () => {
-//   navigate('/welcome');
-// };
