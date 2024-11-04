@@ -31,7 +31,7 @@ import { bigintToLongAddress } from '../utils';
       console.log(bigintToLongAddress("1610891411886380420766473104775373822107081622285015934560508474018384971657"))
 
       const filteredCampaignData = await campaignsData.filter((data) => bigintToLongAddress(data.owner) == address);
-      // console.log(address);
+      console.log(address);
       
       console.log(filteredCampaignData);
       setCampaigns(filteredCampaignData);
