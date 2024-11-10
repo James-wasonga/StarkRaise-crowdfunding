@@ -146,7 +146,7 @@ body.light {
   transform: translateY(-50%);
   width: 5px; /* Adjust the width as needed */
   height: 3em; /* Adjust the height as needed */
-  background-color: green; /* Adjust the color as needed */
+  background-color: green; 
 }
 .Explore-btn{
   color: white;
