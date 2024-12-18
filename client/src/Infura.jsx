@@ -1,3 +1,6 @@
+//this component contains a point to file upload
+
+
 import { create } from "ipfs-http-client";
 import { Buffer } from "buffer";
 
