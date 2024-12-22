@@ -59,7 +59,7 @@ export const StateContextProvider = ({children}) => {
         }));
         return parsedCampaigns;
 
-        //console.log(parsedCampaigns);
+     
 
     }
 
