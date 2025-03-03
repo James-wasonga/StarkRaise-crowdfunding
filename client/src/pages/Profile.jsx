@@ -37,7 +37,7 @@ import { bigintToLongAddress } from '../utils';
       setCampaigns(filteredCampaignData);
     
       // console.log("Fetched Campaigns Successfully",campaignsData);
-      // if(campaignsData.filter((campaign) => bigintToLongAddress campaign.owner === address)){
+      // if(campaignsData.filter((campaign) => bigintToLongAddress campaign.owner === address)){ 
       //   setCampaigns(campaignsData);
       //   console.log(campaignsData);
 
