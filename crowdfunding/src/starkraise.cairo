@@ -10,15 +10,16 @@ mod StarkRaise {
     use crowdfunding::starkstructs::{Campaign, Donation};
     use crowdfunding::utils::{CampaignID, UserAddress, TokenAddress, DonationID, Amount};
     use crowdfunding::erc20::{IERC20Dispatcher};
+    use starknet::storage::Map;
     
 
 
     #[storage]
     struct Storage {
         balance: felt252,
-        campaigns: LegacyMap<CampaignID, Campaign>,
+        campaigns: Map<CampaignID, Campaign>,
         campaigns_count: u256,
-        donations: LegacyMap<(CampaignID, DonationID), Donation>,
+        donations: Map<(CampaignID, DonationID), Donation>,
         guardian: ContractAddress,
     }
 
