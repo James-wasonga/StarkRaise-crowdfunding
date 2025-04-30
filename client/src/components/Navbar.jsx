@@ -29,8 +29,8 @@
           </h1> */}
             
           <h1 className="font-epilogue font-bold sm:text-[36px] text-[25px] leading-[38px] flex-shrink-0 mr-16 mt-2">
-            <span className="text-yellow-500">Kuza</span>
-            <span className="text-blue-500">Devs</span>
+            <span className="text-yellow-500">Stark</span>
+            <span className="text-blue-500">Raise</span>
           </h1> 
 
           <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
