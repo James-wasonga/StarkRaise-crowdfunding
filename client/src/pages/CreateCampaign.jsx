@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
+import {ToastContainer, toast } from 'react-toastify'
 
 import { useStateContext } from '../context';
 import { money } from '../assets';
@@ -13,6 +14,7 @@ const CreateCampaign = () => {
   const {contract, address, provider} = useAppContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
   const { createCampaign } = useStateContext();
   const [uploadedFile, setUploadedFile] = useState(null);
   // const [loading, setLoading] = useState(false)
@@ -40,6 +42,7 @@ const CreateCampaign = () => {
     setIsLoading(true)
     contract['create_campagin'](myCall.calldata).then((res) => {
         console.info("Successful Response:", res)
+        toast.success("campaign created successfully", { position: "top-center", style: {backgroundColor: "darkblue", color: "#fff", fontSize: "20px", width: "34vw", padding: "30px 20px"} })
     }).catch((err) => {
         console.error("Error: ", err)
     }).finally(() => {
@@ -48,9 +51,13 @@ const CreateCampaign = () => {
 }
 
 const handleFileChange = async (e) => {
+  setImageUploading(true)
   // console.log(e)
   var file = e.target.files[0];
   const response = await uploadToIPFS(file);
+  if (response) {
+    setImageUploading(false)
+  }
   console.log(response);
   setUploadedFile(response)
 
@@ -76,6 +83,7 @@ const handleFileChange = async (e) => {
 
   return (
     <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
+      <ToastContainer />
       {isLoading && <Loader />}
       <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
         <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">Start a Campaign</h1>
@@ -139,12 +147,21 @@ const handleFileChange = async (e) => {
           />
 
           <div className="flex justify-center items-center mt-[40px]">
-            <CustomButton 
+
+            {imageUploading ? <CustomButton 
               // btnType="submit"
-              handleClick={makeInteraction}
-              title="Submit new campaign"
+              // handleClick={makeInteraction}
+              title="loading..."
               styles="bg-[#1dc071]"
-            />
+            /> :  <CustomButton 
+            // btnType="submit"
+            handleClick={makeInteraction}
+            title="Submit new campaign"
+            styles="bg-[#1dc071]"
+          />
+            
+            }
+           
           </div>
       </form>
     </div>
