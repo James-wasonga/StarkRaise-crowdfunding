@@ -4,6 +4,7 @@ import React, { useState , useEffect} from 'react';
 import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context';//AppProvider used instead of context
 import { useAppContext } from '../providers/AppProvider';
+import {ToastContainer} from 'react-toastify'
 
 
   const Home = () => {
@@ -54,11 +55,15 @@ useEffect(() =>{
 },[contract, address]);
 
   return (
-    <DisplayCampaigns
+    <>
+    <ToastContainer />
+     <DisplayCampaigns
     title='All Compaigns'
     isLoading = {isLoading}
     campaigns = {campaigns}
   />
+    </>
+   
 
   )
 }
