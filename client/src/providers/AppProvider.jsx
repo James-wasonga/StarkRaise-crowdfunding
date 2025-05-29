@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import { connect, disconnect } from "starknetkit";
+import {toast} from "react-toastify"
 import { ethers } from "ethers";
 import { bigintToLongAddress } from "../utils";
 
@@ -105,6 +106,8 @@ const AppProvider = (props) => {
       calldata: donate_funds.calldata,
     }
   ])
+
+  
 }
 
 const getDonations = async(id) => {
