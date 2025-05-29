@@ -20,7 +20,7 @@ pub trait IStarkRaise<TContractState> {
     fn get_campaign(self: @TContractState, campaign_id: CampaignID) -> Campaign;
     fn donate(ref self: TContractState, campaign_id: CampaignID, amount: Amount);
     fn get_donations(self: @TContractState, campaign_id: CampaignID, page: u256) -> Array<Donation>;
-    fn withdraw_donations(ref self: TContractState, campaign_id: CampaignID);
+    fn withdraw_donations(ref self: TContractState, campaign_id: CampaignID, amount: u256);
     fn get_campaigns(self: @TContractState) -> Array<Campaign>;
 }
 
