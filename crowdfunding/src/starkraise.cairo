@@ -133,7 +133,7 @@ mod StarkRaise {
         }
 
         //Donation Withdrawal
-        fn withdraw_donations(ref self: ContractState, campaign_id: CampaignID) {
+        fn withdraw_donations(ref self: ContractState, campaign_id: CampaignID, amount: u256) {
             let mut campaign = self.campaigns.read(campaign_id);
             let mut _campaign = self.campaigns.read(campaign_id);
             let campaign_amount = campaign.amount_collected;
@@ -141,9 +141,10 @@ mod StarkRaise {
 
             assert(caller == campaign.owner, 'Not the owner');
             assert(campaign.amount_collected >= campaign.target / 2, 'Target not reached');
-            assert(get_block_timestamp() > campaign.deadline, 'Campaign ended');
+            assert(campaign.amount_collected >= amount, 'Not enough funds to withdraw');
+            assert(get_block_timestamp() < campaign.deadline / 1000, 'Campaign ended');
 
-            campaign.amount_collected = 0;
+            campaign.amount_collected = campaign.amount_collected - amount;
             self.campaigns.write(campaign_id, _campaign);
 
             IERC20Dispatcher { contract_address: campaign.token_address}
