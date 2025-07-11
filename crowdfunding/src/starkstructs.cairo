@@ -1,5 +1,5 @@
 use starknet::ContractAddress;
-use crowdfunding::utils::{CampaignID, Amount, UserAddress, DonationID, TokenAddress};
+use crowdfunding::utils::{CampaignID, Amount, UserAddress, DonationID, TokenAddress}; //NEW: Should Add Category
 
 
 #[derive(Serde, Drop, starknet::Store)]
@@ -15,6 +15,7 @@ pub struct Campaign {
     pub image: ByteArray,
     pub donations_count: DonationID,
     pub token_address: TokenAddress,
+    // pub category: Category, // NEW field
 }
 
 #[derive(Copy, Serde, Drop, starknet::Store)]
