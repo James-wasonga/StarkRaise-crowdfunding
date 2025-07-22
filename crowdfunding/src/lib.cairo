@@ -1,7 +1,7 @@
 
-mod starkstructs;
-mod starkraise;
-mod interfaces;
-mod erc20;
-mod utils;
+pub mod starkstructs;
+pub mod starkraise;
+pub mod interfaces;
+pub mod erc20;
+pub mod utils;
 

@@ -15,7 +15,7 @@ pub struct Campaign {
     pub image: ByteArray,
     pub donations_count: DonationID,
     pub token_address: TokenAddress,
-    // pub category: Category, // NEW field
+    pub category: ByteArray, // NEW field
 }
 
 #[derive(Copy, Serde, Drop, starknet::Store)]

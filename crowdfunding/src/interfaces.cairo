@@ -16,7 +16,7 @@ pub trait IStarkRaise<TContractState> {
         amount_collected: Amount,
         image: ByteArray,
         token_address: TokenAddress,
-        // category: Category // New parameter 
+        category: ByteArray // New parameter 
     );
     fn get_campaign(self: @TContractState, campaign_id: CampaignID) -> Campaign;
     fn donate(ref self: TContractState, campaign_id: CampaignID, amount: Amount);

@@ -2,7 +2,7 @@ use crowdfunding::interfaces::IStarkRaise;
 
 
 #[starknet::contract]
-mod StarkRaise {
+pub mod StarkRaise {
     use crowdfunding::erc20::IERC20DispatcherTrait;
     use core::clone::Clone;
     use crowdfunding::interfaces::IStarkRaise;
@@ -54,7 +54,7 @@ mod StarkRaise {
             amount_collected: Amount,
             image: ByteArray,
             token_address: TokenAddress,
-            // category: Category //NEW parameter Added
+            category: ByteArray //NEW parameter Added
         ) {
             let mut campaign_id = self.campaigns_count.read() + 1;
             let campaign = Campaign {
@@ -69,7 +69,7 @@ mod StarkRaise {
                 image,
                 donations_count: 0,
                 token_address,
-                // category, // Store category
+                category // Store category
             };
             self.campaigns.write(campaign_id, campaign);
             self.campaigns_count.write(campaign_id);
