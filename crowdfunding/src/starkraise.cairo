@@ -8,7 +8,7 @@ mod StarkRaise {
     use crowdfunding::interfaces::IStarkRaise;
     use starknet::{get_caller_address, ContractAddress, get_contract_address, get_block_timestamp};
     use crowdfunding::starkstructs::{Campaign, Donation};
-    use crowdfunding::utils::{CampaignID, UserAddress, TokenAddress, DonationID, Amount};
+    use crowdfunding::utils::{CampaignID, UserAddress, TokenAddress, DonationID, Amount }; //NEW: Should Add Category
     use crowdfunding::erc20::{IERC20Dispatcher};
     use starknet::storage::Map;
     
@@ -21,6 +21,9 @@ mod StarkRaise {
         campaigns_count: u256,
         donations: Map<(CampaignID, DonationID), Donation>,
         guardian: ContractAddress,
+        //NEW: Storage for category indexing 2
+        // campaigns_by_category: Map<(Category, u256), CampaignID>,
+        // category_counts: Map<category, u256>,
     }
 
     #[generate_trait]
@@ -50,7 +53,8 @@ mod StarkRaise {
             deadline: u64,
             amount_collected: Amount,
             image: ByteArray,
-            token_address: TokenAddress
+            token_address: TokenAddress,
+            // category: Category //NEW parameter Added
         ) {
             let mut campaign_id = self.campaigns_count.read() + 1;
             let campaign = Campaign {
@@ -65,14 +69,38 @@ mod StarkRaise {
                 image,
                 donations_count: 0,
                 token_address,
+                // category, // Store category
             };
             self.campaigns.write(campaign_id, campaign);
             self.campaigns_count.write(campaign_id);
+
+            // // NEW: Update category indexing
+            // let category_count = self.category_counts.read(category);
+            // self.campaigns_by_category.write((category, category_count), campaign_id);
+            // self.category_counts.write(category, category_count + 1);
+            // //END
+
         }
 
         fn get_campaign(self: @ContractState, campaign_id: CampaignID) -> Campaign {
             self.campaigns.read(campaign_id)
         }
+
+        // // NEW: ADDED FUNCTION
+        // fn get_campaigns_by_category(self: @ContractState, category: Category) -> Array<Campaign> {
+        //     let mut campaigns: Array<Campaign> = ArrayTrait::new();
+        //     let category_count = self.category_counts.read(category);
+        //     let mut counter = 0; 
+
+        //     while (counter < category_count) {
+        //         let campaign_id = self.campaigns_by_category.read((category, counter));
+        //         let campaign = self.campaigns.read(campaign_id);
+        //         campaigns.append(campaign);
+        //         counter += 1;
+        //     };
+        //     campaigns
+        // }
+        // // END
 
         fn donate(
             ref self: ContractState, campaign_id: CampaignID, amount: Amount
@@ -103,7 +131,7 @@ mod StarkRaise {
         fn get_donations(
             self: @ContractState, campaign_id: CampaignID
         , page: u256) -> Array<Donation> {
-            // assert(page > 0, 'Page Cant be less than 1');
+            // assert(page > 0, 'Page Can't be less than 1');
             let mut donations = ArrayTrait::<Donation>::new();
             let campaign = self.get_campaign(campaign_id);
             let total_count = campaign.donations_count;

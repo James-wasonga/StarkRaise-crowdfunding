@@ -1,6 +1,6 @@
 use crowdfunding::starkstructs::{Campaign, Donation};
 use starknet::ContractAddress;
-use crowdfunding::utils::{CampaignID, UserAddress, Amount, TokenAddress};
+use crowdfunding::utils::{CampaignID, UserAddress, Amount, TokenAddress}; //NEW: should Add Category
 
 
 
@@ -15,13 +15,15 @@ pub trait IStarkRaise<TContractState> {
         deadline: u64,
         amount_collected: Amount,
         image: ByteArray,
-        token_address: TokenAddress
+        token_address: TokenAddress,
+        // category: Category // New parameter 
     );
     fn get_campaign(self: @TContractState, campaign_id: CampaignID) -> Campaign;
     fn donate(ref self: TContractState, campaign_id: CampaignID, amount: Amount);
     fn get_donations(self: @TContractState, campaign_id: CampaignID, page: u256) -> Array<Donation>;
     fn withdraw_donations(ref self: TContractState, campaign_id: CampaignID, amount: u256);
     fn get_campaigns(self: @TContractState) -> Array<Campaign>;
+    // fn get_campaigns_by_category(self: @TContractState, category: Category) -> Array<Campaign>; //NEW Function
 }
 
 
