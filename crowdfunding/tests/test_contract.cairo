@@ -48,4 +48,28 @@ fn test_create_campaign() {
 
 }
 
+#[test]
+fn test_donate() {
+    let contract = deploy();
+    let caller: ContractAddress = starknet::contract_address_const::<'0x'>();
+    start_cheat_caller_address_global(caller);
+    contract.donate(1_u256, 100000_u256);
+    let donate: Array<Donation> = contract.get_donations(1_u256, 1_u256);
+
+    assert_eq!(donate.len(), 1, "Donation amount mismatch");
+
+}
+ 
+#[test]
+fn test_withdraw_donations() {
+    let contract = deploy();
+    let caller: ContractAddress = starknet::contract_address_const::<'0x'>();
+    start_cheat_caller_address_global(caller);
+    contract.withdraw_donations(1_u256, 100000_u256);
+    let campaign: Campaign = contract.get_campaign(1_u256);
+
+    assert_eq!(campaign.amount_collected, 100000, "Wrong Amount collected after withdraw");
+
+    stop_cheat_caller_address_global();
+}
 
