@@ -1,0 +1,115 @@
+.campaignBtn {
+    position: relative;
+    padding: 16px 0;
+    font-size: 14px;
+    width: 100%;
+    font-weight: 600;
+    color: #ffffff;
+    /* background: var(--mantine-color-blue-9); */
+    background: transparent !important;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-2px);
+    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); */
+    text-decoration: none;
+    gap: 10px;
+    z-index: 1;
+}
+
+/* Create a pseudo-element for the animated border */
+.campaignBtn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+            #00ff88,
+            #00ccff,
+            #ff00cc,
+            #ffaa00,
+            #00ff88);
+    background-size: 300% 300%;
+    border-radius: 50px;
+    z-index: -1;
+    animation: gradientShift 5s ease infinite;
+}
+
+/* Create another pseudo-element for the button's actual background */
+.campaignBtn::after {
+    content: '';
+    position: absolute;
+    --size: 2px;
+    top: var(--size);
+    left: var(--size);
+    right: var(--size);
+    bottom: var(--size);
+    background: #1a1b1e;
+    border-radius: 49px; /* Almost the same as outer radius */
+    z-index: -1;
+}
+
+.campaignBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    /* opacity: 0.8; */
+}
+
+.campaignBtn:hover::before {
+    animation-duration: 1s;
+}
+
+.campaignBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Additional glow effect */
+.campaignBtn:hover::before {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+/* Ripple effect on click */
+.campaignBtn {
+    position: relative;
+    overflow: hidden;
+}
+
+.campaignBtn .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

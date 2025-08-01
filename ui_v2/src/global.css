@@ -1,0 +1,13 @@
+* {
+  scroll-behavior: smooth;
+  scroll-margin-top: 90px;
+  scroll-padding-top: 90px;
+}
+
+html,
+body {
+  overflow-y: scroll !important;
+  width: 100%;
+  margin: 0;
+  padding-right: 0 !important;
+}
