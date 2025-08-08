@@ -32,26 +32,32 @@ import {
   IconArrowRight,
 } from '@tabler/icons-react';
 
+// import team images
+import jamesImage from '../assets/img/james.jpg';
+import dalmasImage from '../assets/img/dalmas.png';
+
 // Team members data
 const teamMembers = [
   {
-    name: 'Alex Johnson',
+    name: 'James Wasonga',
     role: 'Founder & CEO',
-    bio: 'Blockchain enthusiast with 8+ years of experience in decentralized finance and smart contract development.',
-    avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
+    bio: 'Blockchain enthusiast with 3+ years of experience in decentralized finance and smart contract development.',
+    // avatar: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
+    avatar: jamesImage,
     social: {
-      twitter: 'https://twitter.com',
-      github: 'https://github.com',
+      twitter: 'https://x.com/JamesWasonga8',
+      github: 'https://github.com/James-wasonga',
     }
   },
   {
-    name: 'Sarah Chen',
+    name: 'Dalmas Ogembo',
     role: 'CTO',
     bio: 'StarkNet core contributor and Cairo expert. Previously led engineering teams at major blockchain projects.',
-    avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
+    // avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
+    avatar: dalmasImage,
     social: {
-      twitter: 'https://twitter.com',
-      github: 'https://github.com',
+      twitter: 'https://x.com/dalmasonto',
+      github: 'https://github.com/dalmasonto',
     }
   },
   {
@@ -62,8 +68,8 @@ const teamMembers = [
     social: {
       twitter: 'https://twitter.com',
       github: 'https://github.com',
-    }
-  },
+      }
+    },
   {
     name: 'Emily Nakamoto',
     role: 'Product Manager',
@@ -303,10 +309,14 @@ const AboutPage = () => {
                 <Button variant="filled" color="blue" leftSection={<IconBrandDiscord size={18} />}>
                   Join Discord
                 </Button>
-                <Button variant="light" leftSection={<IconBrandTwitter size={18} />}>
+                <Button variant="light" leftSection={<IconBrandTwitter size={18} />}
+                onClick={() => window.open('https://x.com/StarkRaise1')}
+                >
                   Follow on Twitter
                 </Button>
-                <Button variant="outline" leftSection={<IconBrandGithub size={18} />}>
+                <Button variant="outline" leftSection={<IconBrandGithub size={18} />}
+                onClick={() => window.open('https://github.com/James-wasonga/StarkRaise-crowdfunding')}
+                >
                   Contribute on GitHub
                 </Button>
               </Group>
