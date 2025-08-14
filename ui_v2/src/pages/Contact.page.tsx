@@ -72,7 +72,7 @@ const ContactPage = () => {
   const contactInfo = [
     {
       title: 'Email',
-      value: 'contact@starkraise.io',
+      value: 'starkraise@gmail.com',
       icon: <IconMail size={24} />,
       color: 'blue',
     },
@@ -105,7 +105,7 @@ const ContactPage = () => {
     },
     {
       name: 'GitHub',
-      url: 'https://github.com/starkraise',
+      url: 'https://github.com/James-wasonga/StarkRaise-crowdfunding',
       icon: <IconBrandGithub size={24} />,
       color: 'dark',
     },

@@ -53,6 +53,7 @@ const teamMembers = [
     name: 'Dalmas Ogembo',
     role: 'CTO',
     bio: 'StarkNet core contributor and Cairo expert. Previously led engineering teams at major blockchain projects.',
+    // avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
     avatar: dalmasImage,
     social: {
       twitter: 'https://x.com/dalmasonto',
