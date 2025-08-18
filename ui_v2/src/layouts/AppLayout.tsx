@@ -7,6 +7,7 @@ import {
   AppShell,
   AppShellSection,
   Avatar,
+  BackgroundImage,
   Badge,
   Box,
   Button,
@@ -96,6 +97,69 @@ function NavbarLink({ icon: Icon, label, active, notification, beta, onClick }: 
   );
 }
 
+// Add custom Twitter Link Component
+function TwitterNavbarLink() {
+  const handleTwitterClick = () => {
+    window.open('https://twitter.com/starkraise1', '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <UnstyledButton
+    onClick={handleTwitterClick}
+    style={(theme) => ({
+      display: 'block',
+      width: '100%',
+      padding: theme.spacing.xs,
+      borderRadius: theme.radius.sm,
+      color: theme.colors.dark[0],
+      backgroundColor: 'transparent',
+      '&:hover': {
+        BackgroundColor: rgba(theme.colors.blue[5], 0.05),
+      },
+    })}
+    mb={8}
+    >
+      <Flex align="center">
+        <IconBrandTwitter size={20} stroke={1.5} />
+        <Text ml="md" size="sm" fw={400}>
+          Twitter
+        </Text>
+      </Flex>
+    </UnstyledButton>
+  );
+}
+
+// Add Custom Discord Link Component
+function DiscordNavbarLink() {
+  const handleDiscordClick = () => {
+    window.open('https://discord.com/invite/starkraise', '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <UnstyledButton
+    onClick={handleDiscordClick}
+    style={(theme) => ({
+      display: 'block',
+      width: '100%',
+      padding: theme.spacing.xs,
+      borderRadius: theme.radius.sm,
+      color: theme.colors.dark[0],
+      backgroundColor: 'transparent',
+      '&:hover': {
+        BackgroundColor: rgba(theme.colors.blue[5], 0.05),
+      },
+    })}
+    mb={8}
+    >
+      <Flex align="center">
+        <IconBrandDiscord size={20} stroke={1.5} />
+        <Text ml="md" size="sm" fw={400}>
+          Discord
+          </Text>
+      </Flex>
+      </UnstyledButton>
+  );
+}
 
 export function AppLayout() {
 
@@ -229,8 +293,10 @@ export function AppLayout() {
 
             <Divider label="Our Socials" labelPosition='left' />
 
-            <CustomNavbarLinkJustComponent to="https://twitter.com/StarkNetFyi" title="Twitter" icon={<IconBrandTwitter />} color="blue" />
-            <CustomNavbarLinkJustComponent to="https://discord.gg/starknet" title="Discord" icon={<IconBrandDiscord />} color="blue" />
+            {/* <CustomNavbarLinkJustComponent to="https://twitter.com/StarkNetFyi" title="Twitter" icon={<IconBrandTwitter />} color="blue" /> */}
+            <TwitterNavbarLink/>
+            {/* <CustomNavbarLinkJustComponent to="https://discord.gg/starknet" title="Discord" icon={<IconBrandDiscord />} color="blue" /> */}
+            <DiscordNavbarLink/>
 
           </Stack>
         </AppShellSection>
