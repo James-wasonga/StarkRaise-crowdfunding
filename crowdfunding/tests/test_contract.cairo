@@ -21,14 +21,7 @@ fn deploy() -> IStarkRaiseDispatcher {
     
 }
 
-// #[test]
-// fn test_deploy() {
-//     let owner: ContractAddress = '0x'.try_into().unwrap();
-//     let contract = deploy(owner);
 
-
-//     assert_eq!(contract.get_owner(), owner);
-// }
 
 #[test]
 fn test_create_campaign() {
