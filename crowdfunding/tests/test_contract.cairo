@@ -21,7 +21,14 @@ fn deploy() -> IStarkRaiseDispatcher {
     
 }
 
+// #[test]
+// fn test_deploy() {
+//     let owner: ContractAddress = '0x'.try_into().unwrap();
+//     let contract = deploy(owner);
 
+
+//     assert_eq!(contract.get_owner(), owner);
+// }
 
 #[test]
 fn test_create_campaign() {
@@ -38,6 +45,7 @@ fn test_create_campaign() {
     assert_eq!(campaign.deadline, 172800, "Deadlie mismatch");
     assert_eq!(campaign.amount_collected, 0 , "Wrong Amount collected");
     assert_eq!(campaign.image, "image_url", "Wrong Image");
+    assert_eq!(campaign.category, "Education", "Wrong Category");
 
 }
 
@@ -65,4 +73,3 @@ fn test_withdraw_donations() {
 
     stop_cheat_caller_address_global();
 }
-
