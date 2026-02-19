@@ -10,7 +10,6 @@ import {ToastContainer} from 'react-toastify'
   const Home = () => {
   const [isLoading , setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
-  //Aiming at displaying the fetch data from the smart contract onto the homePage
 
 //const {address, contract, getCampaigns} = useStateContext();
   const {contract, address, provider} = useAppContext();
